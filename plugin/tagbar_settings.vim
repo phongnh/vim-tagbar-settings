@@ -1,4 +1,4 @@
-if !exists("g:loaded_tagbar") || exists("g:load_tagbar_settings")
+if exists("g:load_tagbar_settings")
     finish
 endif
 
