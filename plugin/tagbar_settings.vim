@@ -26,6 +26,19 @@ let g:tagbar_type_css = {
             \ ]
             \ }
 
+" Crystal
+let g:tagbar_type_crystal = {
+            \ 'ctagstype': 'crystal',
+            \ 'kinds': [
+            \   'd:defs',
+            \   'f:functions',
+            \   'c:classes',
+            \   'm:modules',
+            \   'l:libs',
+            \   's:structs'
+            \ ]
+            \ }
+
 " Makefile (targets)
 let g:tagbar_type_make = {
             \ 'kinds' : [
