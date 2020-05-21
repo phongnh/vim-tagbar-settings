@@ -11,8 +11,9 @@ endfunction
 
 function! s:DetectUniversalCtags() abort
     let ctags_paths = [
+                \ 'ctags-universal',
                 \ '/usr/local/bin/ctags',
-                \ '/usr/bin/ctags'
+                \ '/usr/bin/ctags',
                 \ ]
 
     for ctags_path in ctags_paths
@@ -20,10 +21,6 @@ function! s:DetectUniversalCtags() abort
             return ctags_path
         endif
     endfor
-
-    if executable('ctags') && s:IsUniversalCtags('ctags')
-        return 'ctags'
-    endif
 
     return ''
 endfunction
