@@ -9,29 +9,14 @@ function! s:IsUniversalCtags(ctags_path) abort
     return system(cmd) =~# 'Universal Ctags'
 endfunction
 
-function! s:DetectUniversalCtags() abort
-    let ctags_paths = [
-                \ 'ctags-universal',
-                \ '/usr/local/bin/ctags',
-                \ '/usr/bin/ctags',
-                \ ]
+" Set ctags
+if executable('ctags-universal')
+    let g:tagbar_ctags_bin = 'ctags-universal'
+else
+    let g:tagbar_ctags_bin = 'ctags'
+endif
 
-    for ctags_path in ctags_paths
-        if executable(ctags_path) && s:IsUniversalCtags(ctags_path)
-            return ctags_path
-        endif
-    endfor
-
-    return ''
-endfunction
-
-let s:universal_ctags_path = s:DetectUniversalCtags()
-let s:has_universal_ctags = strlen(s:universal_ctags_path)
-
-if s:has_universal_ctags
-    " Set ctags
-    let g:tagbar_ctags_bin = s:universal_ctags_path
-
+if s:IsUniversalCtags(g:tagbar_ctags_bin)
     " Elixir
     let g:tagbar_type_elixir = {
                 \ 'ctagstype': 'elixir',
@@ -164,7 +149,7 @@ if s:has_universal_ctags
     " Rust
     let g:rust_use_custom_ctags_defs = 1  " if using rust.vim
     let g:tagbar_type_rust = {
-                \ 'ctagsbin': s:universal_ctags_path,
+                \ 'ctagsbin': exepath(g:tagbar_ctags_bin),
                 \ 'ctagstype': 'rust',
                 \ 'kinds': [
                 \   'n:modules',
