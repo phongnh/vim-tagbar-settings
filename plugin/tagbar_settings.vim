@@ -5,8 +5,12 @@ endif
 let g:loaded_tagbar_settings = 1
 
 function! s:IsUniversalCtags(ctags_path) abort
-    let cmd = printf("%s --version", a:ctags_path)
-    return system(cmd) =~# 'Universal Ctags'
+    try
+        let cmd = printf("%s --version", a:ctags_path)
+        return system(cmd) =~# 'Universal Ctags'
+    catch
+        return 0
+    endtry
 endfunction
 
 " Set ctags
