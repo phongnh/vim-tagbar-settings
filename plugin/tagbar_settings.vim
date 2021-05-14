@@ -14,13 +14,9 @@ function! s:IsUniversalCtags(ctags_path) abort
 endfunction
 
 " Set ctags
-if executable('ctags-universal')
-    let g:tagbar_ctags_bin = 'ctags-universal'
-else
-    let g:tagbar_ctags_bin = 'ctags'
-endif
+let g:tagbar_ctags_bin = get(g:, 'tagbar_ctags_bin', executable('ctags-universal') ? 'ctags-universal' : 'ctags')
 
-if s:IsUniversalCtags(g:tagbar_ctags_bin)
+if get(g:, 'tagbar_universal_ctags', s:IsUniversalCtags(g:tagbar_ctags_bin))
     " Elixir
     let g:tagbar_type_elixir = {
                 \ 'ctagstype': 'elixir',
