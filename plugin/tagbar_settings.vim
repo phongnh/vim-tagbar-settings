@@ -281,6 +281,7 @@ let g:tagbar_type_crystal = {
             \   'c:classes',
             \   'm:modules',
             \   'l:libs',
-            \   's:structs'
-            \ ]
+            \   's:structs',
+            \   'e:enums',
+            \ ],
             \ }
