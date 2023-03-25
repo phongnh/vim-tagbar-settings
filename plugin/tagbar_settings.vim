@@ -17,6 +17,18 @@ endfunction
 let g:tagbar_ctags_bin = get(g:, 'tagbar_ctags_bin', 'ctags')
 
 if get(g:, 'tagbar_universal_ctags', s:IsUniversalCtags(g:tagbar_ctags_bin))
+    " Cucumber
+    let g:tagbar_type_cucumber = {
+                \ 'ctagstype': 'cucumber',
+                \ 'kinds': [
+                \   'b:background',
+                \   'r:rule',
+                \   's:scenario',
+                \   'o:scenariooutline',
+                \ ],
+                \ 'sort': 0,
+                \ }
+
     " Elixir
     let g:tagbar_type_elixir = {
                 \ 'ctagstype': 'elixir',
