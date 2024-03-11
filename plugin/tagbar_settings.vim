@@ -4,19 +4,10 @@ endif
 
 let g:loaded_tagbar_settings = 1
 
-function! s:IsUniversalCtags(ctags_path) abort
-    try
-        let cmd = printf("%s --version", a:ctags_path)
-        return system(cmd) =~# 'Universal Ctags'
-    catch
-        return 0
-    endtry
-endfunction
-
 " Set ctags
 let g:tagbar_ctags_bin = get(g:, 'tagbar_ctags_bin', 'ctags')
 
-if get(g:, 'tagbar_universal_ctags', s:IsUniversalCtags(g:tagbar_ctags_bin))
+if get(g:, 'tagbar_universal_ctags', system(g:tagbar_ctags_bin . ' --version') =~# 'Universal Ctags')
     " Cucumber
     let g:tagbar_type_cucumber = {
                 \ 'ctagstype': 'cucumber',
